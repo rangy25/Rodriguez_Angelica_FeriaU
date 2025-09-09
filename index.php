@@ -1,33 +1,138 @@
+<?php
+session_start();
+
+// Procesar login (desde login.html)
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST["email"] ?? "";
+    $password = $_POST["password"] ?? "";
+
+    // Usuario de ejemplo
+    if ($email === "admin@feria.com" && $password === "1234") {
+        $_SESSION["usuario"] = $email;
+    } else {
+        $error = "❌ Correo o contraseña incorrectos";
+    }
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Feria De Universidades</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>Feria de Universidades</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
 </head>
 <body>
-      <h1>Pagina Feria De Universidades</h1>    
-      <h2>Ingresar como:</h2>  
+  <!-- 🔹 Mensaje de sesión -->
+  <div class="container text-center mt-3">
+    <?php if (isset($_SESSION["usuario"])): ?>
+      <div class="alert alert-success">
+        ✅ Has iniciado sesión como <b><?php echo $_SESSION["usuario"]; ?></b>
+      </div>
+      <a href="logout.php" class="btn btn-danger btn-sm">Cerrar sesión</a>
+    <?php else: ?>
+      <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+      <p>No has iniciado sesión. <a href="login.html">Inicia sesión aquí</a></p>
+    <?php endif; ?>
+  </div>
 
-<!--Formulario de inicio de sesion -->
+  <!-- 🔹 Encabezado / Menú -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand d-flex align-items-center" href="index.php">
+          <img src="img/logoFeria.jpg" alt="Logo Feria" style="height:50px; margin-right:10px;">
+          <span>Feria de Universidades</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">Acerca de</a></li>
+            <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+            <?php if (!isset($_SESSION["usuario"])): ?>
+              <li class="nav-item"><a class="btn btn-warning text-white ml-lg-3" href="login.html">Iniciar Sesión</a></li>
+              <li class="nav-item"><a class="btn btn-outline-light ml-lg-2" href="register.html">Registrarse</a></li>
+            <?php endif; ?>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-<DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+  <!-- 🔹 Sección principal / slider -->
+  <section class="slider_section text-center">
+    <div class="container">
+      <h1 class="mb-4">XXI Feria de Universidades</h1>
+      <p>
+        La Feria de Universidades es un espacio académico creado para orientar vocacional y profesionalmente a los estudiantes de grado 11 de la región Guanentina y Comunera. El evento reúne instituciones de educación superior, técnica y tecnológica, públicas y privadas, para dar a conocer sus programas.
+      </p>
+    </div>
+  </section>
 
-   
-    
-    <hr>
-    <a href="loguearse_adm.php">Administrador</a>
-    <hr>
-    <a href="registrar_departamento.php">Delegado</a>
-    <hr>
-    <a href="registrar_apoyo.php">Apoyo</a>
-    <hr>
-    <a href="registrar_guia.php">Guia</a>
+  <!-- 🔹 Sección bienvenida -->
+  <section class="welcome_section layout_padding">
+    <div class="container text-center">
+      <div class="custom_heading-container">
+        <h2>¿Qué es la Feria de Universidades?</h2>
+      </div>
+      <p class="mt-4">
+        La Feria busca ofrecer un espacio de encuentro entre instituciones educativas, estudiantes, padres de familia y la comunidad en general. Su propósito es facilitar el acceso a información actualizada sobre programas académicos y brindar orientación vocacional a los jóvenes que desean continuar su formación en la educación superior.
+      </p>
+    </div>
+  </section>
 
+  <!-- 🔹 Sección objetivos -->
+  <section class="service_section">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2>Objetivos de la Feria</h2>
+      </div>
+      <div class="row justify-content-center layout_padding2">
+        <div class="col-md-4 service_box">
+          <div class="detail-box">
+            <i class="fa-solid fa-users fa-2x mb-3" style="color:#3a0ca3;"></i>
+            <h4>Encuentro Académico</h4>
+            <p>Reunir a instituciones de educación superior, técnica y tecnológica con estudiantes y docentes de la región.</p>
+          </div>
+        </div>
+        <div class="col-md-4 service_box">
+          <div class="detail-box">
+            <i class="fa-solid fa-graduation-cap fa-2x mb-3" style="color:#3a0ca3;"></i>
+            <h4>Orientación Vocacional</h4>
+            <p>Brindar información y acompañamiento a los jóvenes interesados en ingresar a programas académicos.</p>
+          </div>
+        </div>
+        <div class="col-md-4 service_box">
+          <div class="detail-box">
+            <i class="fa-solid fa-handshake fa-2x mb-3" style="color:#3a0ca3;"></i>
+            <h4>Redes Académicas</h4>
+            <p>Fortalecer vínculos entre colegios y universidades para fomentar una formación integral.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 Pie de página -->
+  <footer class="footer_bg">
+    <section class="container-fluid footer_section">
+      <p>© 2025 Feria de Universidades - Colegio San José de Guanentá</p>
+    </section>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
 </body>
 </html>
+
+
