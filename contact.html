@@ -1,100 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta charset="UTF-8">
   <title>Contacto - Feria de Universidades</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.css"/>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="css/responsive.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    body {
+      background: #f5f5f5;
+    }
+    .contact-card {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .contact-card h2 {
+      text-align: center;
+      font-weight: 700;
+      color: #3a0ca3;
+      margin-bottom: 20px;
+    }
+    .btn-custom {
+      border-radius: 25px;
+      font-weight: 600;
+      padding: 10px 20px;
+    }
+    .btn-secondary {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Encabezado -->
-  <header class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img src="images/logo.png" alt="Logo Feria" style="height:50px; margin-right:10px;">
-          <span>Feria de Universidades</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">Acerca de</a></li>
-            <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
-            <li class="nav-item active"><a class="nav-link" href="contact.html">Contacto</a></li>
-            <li class="nav-item"><a class="btn btn-warning text-white ml-lg-3" href="login.html">Iniciar Sesión</a></li>
-            <li class="nav-item"><a class="btn btn-outline-light ml-lg-2" href="register.html">Registrarse</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Sección contacto -->
-  <section class="contact_section layout_padding bg-light">
-    <div class="container">
-      <div class="custom_heading-container text-center mb-4">
-        <h2>Contacto</h2>
+  <div class="contact-card">
+    <h2>📩 Contáctanos</h2>
+    <form action="enviar_contacto.php" method="POST">
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" name="nombre" class="form-control" required>
       </div>
-      <div class="row justify-content-center">
-        <!-- Información -->
-        <div class="col-md-5 mb-4">
-          <div class="card shadow-sm p-4">
-            <p class="mb-3 text-center">Ponte en contacto con nosotros:</p>
-            <ul class="list-unstyled">
-              <li class="mb-2"><strong>📧 Correo:</strong> feriadeuniversidades@colegioguanenta.edu.co</li>
-              <li class="mb-2"><strong>📞 Teléfonos:</strong> 3187654894 - 3005285633 - 3176789029</li>
-              <li class="mb-2"><strong>📍 Dirección:</strong> San Gil, Colegio San José de Guanentá</li>
-            </ul>
-          </div>
-        </div>
-        <!-- Formulario -->
-        <div class="col-md-5">
-          <div class="card shadow-sm p-4">
-            <h5 class="text-center mb-3">Envíanos un mensaje</h5>
-            <form action="#" method="POST">
-              <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo" required>
-              </div>
-              <div class="form-group">
-                <label for="subject">Asunto</label>
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto del mensaje" required>
-              </div>
-              <div class="form-group">
-                <label for="message">Mensaje</label>
-                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-            </form>
-          </div>
-        </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" name="email" class="form-control" required>
       </div>
-    </div>
-  </section>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea name="mensaje" class="form-control" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-custom">Enviar mensaje</button>
+    </form>
+    <!-- Botón para regresar al inicio -->
+    <a href="index.php" class="btn btn-secondary btn-block btn-custom">⬅️ Volver al inicio</a>
+  </div>
 
-  <!-- Footer -->
-  <footer class="footer_bg">
-    <section class="container-fluid footer_section">
-      <p>© 2025 Feria de Universidades - Colegio San José de Guanentá</p>
-    </section>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
 </body>
 </html>
+

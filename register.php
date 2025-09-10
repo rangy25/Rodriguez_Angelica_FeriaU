@@ -1,17 +1,34 @@
 <?php
+session_start();
 include 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre   = $conn->real_escape_string($_POST['name']);
+    $nombre   = $conn->real_escape_string($_POST['nombre']);
     $email    = $conn->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $rol      = $conn->real_escape_string($_POST['rol']);
 
-    $sql = "INSERT INTO usuarios (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
+    $check = "SELECT * FROM usuarios WHERE email='$email' LIMIT 1";
+    $result = $conn->query($check);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Registro exitoso. Ahora puedes iniciar sesión.'); window.location='login.html';</script>";
+    if ($result->num_rows > 0) {
+        echo "<script>alert('⚠️ El correo ya está registrado'); window.history.back();</script>";
     } else {
-        echo "<script>alert('Error: " . $conn->error . "'); window.history.back();</script>";
+        $sql = "INSERT INTO usuarios (nombre, email, password, rol) 
+                VALUES ('$nombre', '$email', '$password', '$rol')";
+        if ($conn->query($sql) === TRUE) {
+            $_SESSION['usuario'] = $nombre;
+            $_SESSION['rol']     = $rol;
+            $_SESSION['registro_exitoso'] = true; // 👈 bandera de bienvenida
+
+            header("Location: home.php");
+            exit();
+        } else {
+            echo "<script>alert('❌ Error al registrar: " . $conn->error . "'); window.history.back();</script>";
+        }
     }
 }
 ?>
+
+
+

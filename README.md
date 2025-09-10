@@ -1,1 +1,10 @@
-# Feria-de-universidades
+![pagina principal](img/principal.jpg)
+![pagina principal](img/priincipal1.jpg)
+![servicio](img/servico.jpg)
+![servicio](img/servico1.jpg)
+![acerca de](img/acercade.jpg)
+![inicio de secion](img/inicio.jpg)
+![inicio de secion](img/inicio1.jpg)
+![inicio de secion](img/inicio2.jpg)
+![registro](img/registro1.jpg)
+![registro](img/registro2.jpg)
